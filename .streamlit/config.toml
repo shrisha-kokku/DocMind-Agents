@@ -1,0 +1,5 @@
+[server]
+maxUploadSize = 200   # MB per file - large PDFs are supported
+
+[theme]
+primaryColor = "#6366f1"

@@ -1,0 +1,45 @@
+openai-agents>=0.24.0
+pymupdf
+faiss-cpu
+fastembed
+numpy
+streamlit
+python-dotenv
+pytest
+
+
+
+
+## Attention paper
+
+# What is multi-head attention and why is it used?
+# How many attention heads does the base model use?
+# What BLEU score did the model get on English-to-German translation?
+# Why does the Transformer need positional encoding?
+# What is scaled dot-product attention?
+# On how many GPUs, and for how long, was the model trained?
+
+## RAG paper
+
+# What is the difference between RAG-Sequence and RAG-Token?
+# What retriever does RAG use?
+# What generator model does RAG use?
+# Which tasks did the authors evaluate RAG on?
+# How is the document index built?
+# What are the advantages of RAG over a plain language model?
+
+## Summaries (these should go to the summarization agent)
+
+# “Summarize the attention paper”
+# “Summarize all documents”
+# “Give me the main points of the RAG paper”
+
+## Both papers together (RAG agent searching across files)
+
+# “Compare how the two papers use attention or retrieval”
+# “Which paper talks about BLEU scores?”
+
+## Fallback and follow-up
+
+# “Who won the cricket world cup?” should get “the documents do not contain this”.
+# Ask question 1, then “explain it in simpler words” to test chat history.
