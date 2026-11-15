@@ -8,7 +8,7 @@ What happens here:
 """
 import asyncio
 import os
-
+import logging
 import streamlit as st
 
 st.set_page_config(page_title="DocMind Agents", page_icon="📚", layout="wide")
@@ -131,7 +131,8 @@ if prompt := st.chat_input("Ask a question or request a summary..."):
                 answer, tools_used = asyncio.run(ask(prompt, st.session_state.history, context))
                 route = ", ".join(ROUTE_LABELS.get(t, t) for t in tools_used) or "Planner (answered directly)"
                 status.update(label="Done", state="complete", expanded=False)
-            except Exception as error:  # API errors, rate limits, max turns ...
+            except Exception as error:
+                logging.getLogger("docmind").exception("Agent run failed")
                 answer = f"⚠️ Something went wrong: `{error}`\n\nTry again, or switch LLM_MODEL in your settings."
                 status.update(label="Failed", state="error")
         st.markdown(answer)

@@ -15,6 +15,10 @@ from pdf_agents.context import AppContext
 from pdf_agents.rag_agent import build_rag_agent
 from pdf_agents.summarizer_agent import build_summarizer_agent
 
+import logging
+import time
+log = logging.getLogger("docmind")
+
 QA_TOOL = "document_qa"
 SUMMARY_TOOL = "document_summary"
 
@@ -75,9 +79,11 @@ async def ask(question: str, history: list[dict], ctx: AppContext) -> tuple[str,
 
     # Agents SDK: Runner.run loops  LLM -> tool call -> tool result -> LLM ...  until a final answer.
     # max_turns is a safety limit on that loop.
+    start = time.time()
     result = await Runner.run(planner, input=messages, context=ctx, max_turns=8)
 
     # result.new_items lists everything that happened in this run (messages, tool calls, outputs).
     # We keep the tool calls so the UI can show which agent the planner chose.
     tools_used = [getattr(item.raw_item, "name", "") for item in result.new_items if isinstance(item, ToolCallItem)]
+    log.info("question=%r | tools=%s | %.1fs", question[:80], tools_used or "direct", time.time() - start)
     return str(result.final_output), tools_used

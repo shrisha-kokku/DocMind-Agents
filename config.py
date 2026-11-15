@@ -5,7 +5,10 @@ config.py - every setting lives here, read from environment variables.
 import os
 from dotenv import load_dotenv
 
-load_dotenv()  
+load_dotenv()
+
+import logging
+logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s", force=True)
 
 LLM_API_KEY = os.getenv("LLM_API_KEY", "")
 LLM_BASE_URL = os.getenv("LLM_BASE_URL", "https://api.groq.com/openai/v1")
