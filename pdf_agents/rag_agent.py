@@ -19,11 +19,6 @@ async def search_documents(ctx: RunContextWrapper[AppContext], query: str, filen
         query: What to look for. Use a clear, self-contained search phrase.
         filename: Optional. Restrict the search to one uploaded file. Use an empty string to search all files.
     """
-    # Agents SDK concept: @function_tool turns this Python function into a tool.
-    #  - the function NAME becomes the tool name
-    #  - the DOCSTRING becomes the description the LLM reads to decide when to use it
-    #  - the TYPE HINTS become the JSON schema of the arguments
-    #  - first parameter `ctx` is injected by the SDK (hidden from the LLM)
     store = ctx.context.store
     ctx.context.progress(f"Searching documents for: {query}")
 

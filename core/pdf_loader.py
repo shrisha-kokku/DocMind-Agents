@@ -2,7 +2,7 @@
 pdf_loader.py - PDF bytes -> list of pages with clean text.
 
 PyMuPDF is used because it is very fast and reads page by page, so even
-10 MB+ PDFs (hundreds of pages) load in a couple of seconds.
+large PDFs (hundreds of pages) load in a couple of seconds.
 """
 import re
 from dataclasses import dataclass

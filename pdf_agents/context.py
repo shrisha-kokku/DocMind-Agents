@@ -6,8 +6,6 @@ context=obj), and every tool receives it via RunContextWrapper. It is NOT sent
 to the LLM - it is just your own Python data (here: the vector store and a
 progress callback). This avoids global variables.
 
-(Folder is named pdf_agents, not "agents", because "agents" is the SDK's own
-package name - a clash would break imports.)
 """
 from dataclasses import dataclass
 from typing import Callable
